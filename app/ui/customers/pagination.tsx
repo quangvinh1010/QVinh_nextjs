@@ -6,8 +6,7 @@ import Link from 'next/link';
 import { generatePagination } from '@/app/lib/utils';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-export default function Pagination({ totalPages }: { totalPages: number }) {
-  // NOTE: comment in this code when you get to this point in the course
+export default function CustomersPagination({ totalPages }: { totalPages: number }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const currentPage = Number(searchParams.get('page')) || 1;
@@ -21,10 +20,8 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
 
   return (
     <>
-      {/* NOTE: comment in this code when you get to this point in the course */}
-
       <div className="inline-flex">
-        <PaginationArrow
+        <CustomersPaginationArrow
           direction="left"
           href={createPageURL(currentPage - 1)}
           isDisabled={currentPage <= 1}
@@ -40,7 +37,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
             if (page === '...') position = 'middle';
 
             return (
-              <PaginationNumber
+              <CustomersPaginationNumber
                 key={page}
                 href={createPageURL(page)}
                 page={page}
@@ -51,7 +48,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
           })}
         </div>
 
-        <PaginationArrow
+        <CustomersPaginationArrow
           direction="right"
           href={createPageURL(currentPage + 1)}
           isDisabled={currentPage >= totalPages}
@@ -61,7 +58,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
   );
 }
 
-function PaginationNumber({
+function CustomersPaginationNumber({
   page,
   href,
   isActive,
@@ -92,7 +89,7 @@ function PaginationNumber({
   );
 }
 
-function PaginationArrow({
+function CustomersPaginationArrow({
   href,
   direction,
   isDisabled,
